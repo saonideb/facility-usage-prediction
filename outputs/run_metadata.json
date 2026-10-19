@@ -1,0 +1,43 @@
+{
+  "seed": 42,
+  "source_events": 12000,
+  "resident_count": 450,
+  "supervised_examples": 11550,
+  "train_examples": 9240,
+  "holdout_examples": 2310,
+  "target_booking_cutoff": "2024-11-24 16:38:11.800000",
+  "features": [
+    "resident_ref",
+    "anchor_facility",
+    "anchor_booking_hour",
+    "anchor_booking_weekday",
+    "anchor_booking_month",
+    "anchor_weekend",
+    "history_count",
+    "history_unique_facilities",
+    "history_top_facility",
+    "history_avg_lead_hours",
+    "history_avg_usage_hour",
+    "history_avg_usage_weekday",
+    "history_mode_usage_weekday",
+    "history_mode_usage_hour",
+    "days_since_previous_booking",
+    "history_avg_booking_gap_days",
+    "history_median_booking_gap_days",
+    "resident_count__gym",
+    "resident_count__swimming_pool",
+    "resident_count__badminton_court",
+    "resident_count__tennis_court",
+    "resident_count__clubhouse",
+    "resident_count__multipurpose_hall"
+  ],
+  "models": "ExtraTrees classifiers for facility/weekday/hour; regressors for days-to-usage and days-to-booking",
+  "target_definition": "Predict next resident booking from anchor event and prior resident history",
+  "leakage_controls": [
+    "Target event excluded from all features",
+    "Chronological split by target booking timestamp",
+    "Preprocessors fitted on training rows only"
+  ],
+  "notification_evaluation": "Actual booking timestamp is a proxy, not observed notification-send time",
+  "python_version": "3.13.5"
+}
